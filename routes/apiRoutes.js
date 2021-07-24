@@ -13,11 +13,13 @@ router.post('/notes', (req, res) => {
         text: req.body.text,
         id: Math.floor(Math.random() * 1000)
     }
+    //Add a new note to the database using writeFileSync
+    //api routes using readFileSync & writeFileSync are "controller"
     db.push(noteTemplate)
     fs.writeFileSync('./db/db.json', JSON.stringify(db))
     res.json(db)
 })
-
+    //Delete a note from the database
 router.delete('/notes/:id', (req, res) => {
     const notesToKeep = [];
     for (let i = 0; i < db.length; i++) {
@@ -25,7 +27,9 @@ router.delete('/notes/:id', (req, res) => {
             notesToKeep.push(db[i])
         }
     }
+    //sets the notes to keep to the database
     db = notesToKeep;
+    //repeats write file function after a note is deleted
     fs.writeFileSync('./db/db.json', JSON.stringify(db), function(err, res){
         if (err) {
             throw err
@@ -39,6 +43,3 @@ router.delete('/notes/:id', (req, res) => {
 module.exports = router;
 
 
-//db.json is model
-//index.html is view
-//api routes using readFileSync & writeFileSync are controller

@@ -5,14 +5,18 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "npm run build"
   },
   "author": "Rachel E LaQuea",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "nvm": "^0.0.4"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RLAQUEA/note-taker.git"

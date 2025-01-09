@@ -6,6 +6,7 @@ module.exports = {
     filename: 'bundle.js', // Output file name
     path: path.resolve(__dirname, 'public/assets/js'), // Output directory
   },
+  mode: 'production', // Set the mode to 'production' or 'development'
   module: {
     rules: [
       {

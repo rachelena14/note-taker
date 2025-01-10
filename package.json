@@ -18,13 +18,15 @@
     "uuid": "^11.0.4"
   },
   "devDependencies": {
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.2",
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
+    "@eslint/js": "^9.17.0",
     "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "globals": "^15.14.0",
     "style-loader": "^2.0.0",
-    "css-loader": "^5.2.6"
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
   },
   "repository": {
     "type": "git",

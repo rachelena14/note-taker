@@ -44,7 +44,7 @@ router.post('/api/notes', (req, res) => {
 });
 
 // DELETE /api/notes/:id - Delete a note
-router.delete('/notes/:id', (req, res) => {
+router.delete('/api/notes/:id', (req, res) => {
     try {
         let db = readDatabase();
         db = db.filter(note => note.id !== req.params.id);

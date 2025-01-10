@@ -17,7 +17,7 @@ const writeDatabase = (data) => {
 };
 
 // GET /api/notes - Read all notes
-router.get('/api/notes', (req, res) => {
+router.get('/notes', (req, res) => {
     try {
         const db = readDatabase();
         res.json(db);
@@ -27,7 +27,7 @@ router.get('/api/notes', (req, res) => {
 });
 
 // POST /api/notes - Add a new note
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     try {
         const db = readDatabase();
         const noteTemplate = {
@@ -44,7 +44,7 @@ router.post('/api/notes', (req, res) => {
 });
 
 // DELETE /api/notes/:id - Delete a note
-router.delete('/api/notes/:id', (req, res) => {
+router.delete('/notes/:id', (req, res) => {
     try {
         let db = readDatabase();
         db = db.filter(note => note.id !== req.params.id);

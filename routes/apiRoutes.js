@@ -17,7 +17,7 @@ const writeDatabase = (data) => {
 };
 
 // GET /api/notes - Read all notes
-router.get('/notes', (req, res) => {
+router.get('/api/notes', (req, res) => {
     try {
         const db = readDatabase();
         res.json(db);
@@ -27,7 +27,7 @@ router.get('/notes', (req, res) => {
 });
 
 // POST /api/notes - Add a new note
-router.post('/notes', (req, res) => {
+router.post('/api/notes', (req, res) => {
     try {
         const db = readDatabase();
         const noteTemplate = {

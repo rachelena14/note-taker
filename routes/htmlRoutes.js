@@ -3,6 +3,7 @@ const router = require('express').Router();
 
 // When /notes is accessed, this will render notes.html file
 router.get('/notes', (req, res) => {
+    console.log(`Request URL: ${req.url}`);
     res.sendFile(path.join(__dirname, '../public/notes.html'));
 });
 

@@ -1,4 +1,4 @@
-//ensures express and the routes are being utilized
+// Ensures express and the routes are being utilized
 
 require('dotenv').config();
 const express = require('express'); 
@@ -8,11 +8,6 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const app = express();
-app.get('/notes', (req, res) => {
-    // Handle the request to /notes here
-    // e.g., Fetch data from a database, return JSON, etc.
-    res.json({ message: "Here are your notes" }); 
-  });
 
 const PORT = process.env.PORT || 3001;
 

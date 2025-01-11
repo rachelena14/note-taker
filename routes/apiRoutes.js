@@ -1,6 +1,8 @@
+
+const express = require('express');
+const router = express.Router();
 const fs = require('fs');
 const path = require('path');
-const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid'); // Use UUID for unique IDs
 
 const dbPath = path.join(__dirname, '../db/db.json');
@@ -37,7 +39,7 @@ router.post('/notes', (req, res) => {
         };
         db.push(noteTemplate);
         writeDatabase(db);
-        res.json(noteTemplate);
+        res.status(201).json(noteTemplate); // Return 201 status code
     } catch (err) {
         res.status(500).json({ error: 'Failed to add note' });
     }

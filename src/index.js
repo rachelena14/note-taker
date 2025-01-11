@@ -13,10 +13,10 @@ if (window.location.pathname === '/notes') {
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
+  console.log('Elements selected:', { noteTitle, noteText, saveNoteBtn, newNoteBtn, noteList });
 }
 
 // Show an element
-console.log('Hello, Webpack!');
 const show = (elem) => {
   elem.style.display = 'inline';
 };
@@ -35,6 +35,13 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
+  }).then(response => {
+    if (!response.ok) {
+      return response.text().then(text => { throw new Error(text) });
+    }
+    return response.json();
+  }).catch(error => {
+    console.error('Error fetching notes:', error);
   });
 
 const saveNote = (note) =>
@@ -44,6 +51,13 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
+  }).then(response => {
+    if (!response.ok) {
+      return response.text().then(text => { throw new Error(text) });
+    }
+    return response.json();
+  }).catch(error => {
+    console.error('Error saving note:', error);
   });
 
 const deleteNote = (id) =>
@@ -52,6 +66,8 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json',
     },
+  }).catch(error => {
+    console.error('Error deleting note:', error);
   });
 
 const renderActiveNote = () => {
@@ -75,15 +91,18 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
+  console.log('Saving note:', newNote); // Debug log
+  saveNote(newNote).then((savedNote) => {
+    console.log('Note saved successfully:', savedNote);
     getAndRenderNotes();
     renderActiveNote();
+  }).catch((error) => {
+    console.error('Error saving note:', error);
   });
 };
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
-  // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
   const note = e.target;
@@ -96,6 +115,8 @@ const handleNoteDelete = (e) => {
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
+  }).catch((error) => {
+    console.error('Error deleting note:', error);
   });
 };
 
@@ -122,14 +143,14 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
-  let jsonNotes = await notes.json();
+  let jsonNotes = await notes;
+  console.log('Fetched notes:', jsonNotes); // Debug log
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
   let noteListItems = [];
 
-  // Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');

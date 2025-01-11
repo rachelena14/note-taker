@@ -6,6 +6,10 @@
       "dest": "/api/$1"
     },
     {
+      "src": "/notes",
+      "dest": "/notes.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/server.js"
     }

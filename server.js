@@ -6,6 +6,7 @@ const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require('path');
 
 const app = express();
 
@@ -19,6 +20,12 @@ app.use(express.static('public'));
 
 // Designates which routes the data will follow 
 app.use('/api', apiRoutes);
+
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/notes.html'));
+  });
+  
+
 app.use('/', htmlRoutes);
 
 // Error handling middleware

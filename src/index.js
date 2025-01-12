@@ -1,4 +1,3 @@
-// src/index.js
 import './styles.css';
 
 let noteTitle;

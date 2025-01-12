@@ -11,7 +11,16 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-app.use(helmet());
+// Update the Content Security Policy to allow the jQuery script
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://cdnjs.cloudflare.com"]
+    }
+  }
+}));
+
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
